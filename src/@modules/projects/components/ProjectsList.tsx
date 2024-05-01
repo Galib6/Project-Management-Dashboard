@@ -3,17 +3,17 @@
 import { apiMessages } from '@lib/constant';
 import { ColumnsType } from 'antd/es/table';
 import {
-  Avatar,
-  Button,
-  Drawer,
-  Form,
-  Modal,
-  PaginationProps,
-  Popconfirm,
-  Space,
-  Table,
-  Tooltip,
-  message,
+    Avatar,
+    Button,
+    Drawer,
+    Form,
+    Modal,
+    PaginationProps,
+    Popconfirm,
+    Space,
+    Table,
+    Tooltip,
+    message,
 } from 'antd/lib';
 import React, { useState } from 'react';
 import { AiFillDelete } from 'react-icons/ai';
@@ -113,6 +113,12 @@ const ProjectList: React.FC<IProps> = ({ data, loading, pagination }) => {
       align: 'center',
       render: (id) => (
         <Space>
+          <Button
+            className="!h-auto !p-[8px]"
+            onClick={async () => }
+          >
+            <RiEditBoxFill size={16} />
+          </Button>
           <Button
             className="!h-auto !p-[8px]"
             onClick={async () => {
