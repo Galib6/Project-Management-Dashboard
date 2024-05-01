@@ -1,5 +1,7 @@
 export const ENV = {
   NEXT_PUBLIC_API_END_POINT: process.env.NEXT_PUBLIC_API_END_POINT,
+  NEXT_PUBLIC_API_TOKEN: process.env.NEXT_PUBLIC_API_TOKEN,
   NEXT_PUBLIC_STORAGE_PREFIX: process.env.NEXT_PUBLIC_STORAGE_PREFIX,
   NEXT_PUBLIC_APP_MODE: process.env.NEXT_PUBLIC_APP_MODE,
+  isProduction: process.env.NEXT_PUBLIC_APP_MODE === 'production',
 };

@@ -1,11 +1,13 @@
 'use client';
-import { Grid, Layout, Menu } from 'antd/lib';
+import { paths } from '@lib/constant';
+import { Dropdown, Grid, Layout, Menu, Space } from 'antd/lib';
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Router } from 'next/router';
 import React, { useState } from 'react';
-import { AiOutlineMenuFold, AiOutlineMenuUnfold } from 'react-icons/ai';
+import { CgMenuLeft, CgMenuRight } from 'react-icons/cg';
+import { FaAngleDown } from 'react-icons/fa6';
 import menuItems from './_menu-items';
-
 interface IFProps {
   children: any;
   router?: Router;
@@ -80,14 +82,14 @@ const AppLayout: React.FC<IFProps> = ({ children }) => {
             justifyContent: 'center',
           }}
         >
-          {isCollapsed ? <p>Manage</p> : <p className="font-bold text-[20px]">Manage Task</p>}
+          {isCollapsed ? <p className="text-[16px]">MT</p> : <p className="font-bold text-[20px]">Manage Task</p>}
         </div>
         <div
           className="top-[10px] right-0 translate-x-[50%] absolute p-2 bg-white rounded-full shadow-lg z-[9999]"
           style={{ fontSize: 22, cursor: 'pointer' }}
           onClick={() => setIsCollapsed(!isCollapsed)}
         >
-          {isCollapsed ? <AiOutlineMenuFold /> : <AiOutlineMenuUnfold />}
+          {isCollapsed ? <CgMenuRight /> : <CgMenuLeft />}
         </div>
         <Menu
           theme="light"
@@ -101,10 +103,22 @@ const AppLayout: React.FC<IFProps> = ({ children }) => {
 
       <Layout style={styles.layout as any}>
         <Layout.Header style={styles.header as any}>
-          <div className="flex items-center justify-between w-full">
-            {/* <div className="">
-              <Dropdown.Button menu={{ items: menuItems.welcomeMenu, style: { width: 150 } }}>Welcome</Dropdown.Button>
-            </div> */}
+          <div className="flex items-center justify-end w-full pr-[30px]">
+            <Dropdown
+              menu={{
+                items: [
+                  { key: '1', label: <Link href={paths.auth.login}>Login</Link> },
+                  { key: '2', label: <Link href={paths.auth.login}>Sign up</Link> },
+                ],
+                selectable: true,
+                defaultSelectedKeys: ['3'],
+              }}
+            >
+              <Space>
+                Profile
+                <FaAngleDown />
+              </Space>
+            </Dropdown>
           </div>
         </Layout.Header>
         <Layout.Content style={styles.content as any}>{children}</Layout.Content>

@@ -1,3 +1,5 @@
+import QueryString from 'qs';
+
 export class toolbox {
   public static appendPagination(path: string, page = 1, limit = 10) {
     return `${path}?page=${page}&limit=${limit}`;
@@ -54,6 +56,24 @@ export class toolbox {
     }
     return this.toSafeObject(obj);
   }
+  public static parseQueryParams<T = any>(url: string): T {
+    const queryString = url.split('?')[1];
+    if (!queryString) return {} as T;
+
+    const query = {};
+    const pairs = queryString.split('&');
+    for (const pair of pairs) {
+      const [key, value] = pair.split('=');
+      if (!Number.isNaN(Number(value))) {
+        query[decodeURIComponent(key)] = Number(value);
+      } else if (key === 'sort') {
+        query[decodeURIComponent(key)] = JSON.parse(decodeURIComponent(value || ''));
+      } else {
+        query[decodeURIComponent(key)] = decodeURIComponent(value || '');
+      }
+    }
+    return query as T;
+  }
   public static isEmpty(value: any): boolean {
     return (
       value === null ||
@@ -64,4 +84,23 @@ export class toolbox {
       value === 'undefined'
     );
   }
+  public static queryStringify = (options: any) => {
+    if (options)
+      return QueryString.stringify(options, {
+        encodeValuesOnly: true,
+      });
+
+    return '';
+  };
+  public static removeDuplicateObjectsByProperty = (array, property) => {
+    const uniqueObjects = [];
+    const uniqueValues = new Set();
+    array.forEach((obj) => {
+      if (!uniqueValues.has(obj[property])) {
+        uniqueValues.add(obj[property]);
+        uniqueObjects.push(obj);
+      }
+    });
+    return uniqueObjects;
+  };
 }
