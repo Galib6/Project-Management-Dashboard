@@ -1,0 +1,9 @@
+{
+    "eslint.validate": [
+        
+    ],
+    "cSpell.words": [
+        "tailwindcss",
+        "tanstack"
+    ]
+}
