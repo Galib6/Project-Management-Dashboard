@@ -1,4 +1,4 @@
-import { Button, Col, Form, Input, Row } from 'antd';
+import { Button, Col, Form, Input, Row } from 'antd/lib';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

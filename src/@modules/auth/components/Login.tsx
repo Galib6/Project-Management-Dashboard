@@ -1,6 +1,6 @@
 'use client';
 import { apiMessages } from '@lib/constant';
-import { Button, Checkbox, Col, Form, Input, Row, message } from 'antd';
+import { Button, Checkbox, Col, Form, Input, Row, message } from 'antd/lib';
 import Image from 'next/image';
 import Link from 'next/link';
 import LoginThumb from 'public/images/auth-thumb.svg';
