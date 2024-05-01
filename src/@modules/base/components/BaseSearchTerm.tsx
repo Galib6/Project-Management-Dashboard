@@ -1,9 +1,9 @@
 'use client';
-import { Input } from 'antd';
 import { toolbox } from '@lib/utils';
-import { AiOutlineSearch } from 'react-icons/ai';
+import { Input } from 'antd/lib';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { AiOutlineSearch } from 'react-icons/ai';
 
 interface IProps {
   term?: string;

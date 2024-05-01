@@ -3,8 +3,12 @@
         
     ],
     "cSpell.words": [
+        "antd",
         "cloudinary",
+        "Kanban",
+        "Popconfirm",
         "tailwindcss",
-        "tanstack"
+        "tanstack",
+        "zustand"
     ]
 }

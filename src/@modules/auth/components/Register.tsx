@@ -6,7 +6,6 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { MdEmail, MdLock } from 'react-icons/md';
-import { IRegister } from '../lib/interfaces';
 
 const Register = () => {
   const [loading, setIsLoading] = useState(false);
@@ -14,7 +13,7 @@ const Register = () => {
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
 
-  const onFinish = (values: IRegister) => {
+  const onFinish = (values) => {
     delete values.confirmPassword;
     setIsLoading(true);
     messageApi.open({

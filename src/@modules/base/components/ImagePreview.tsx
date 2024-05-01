@@ -1,4 +1,4 @@
-import { Image, ImageProps } from 'antd';
+import { Image, ImageProps } from 'antd/lib';
 import React from 'react';
 
 interface IProps extends ImageProps {

@@ -1,3 +1,25 @@
+export interface IBaseStrapiFilter {
+  populate?: object | string;
+  sort?: string;
+  pagination?: {
+    page: number;
+    pageSize: number;
+  };
+  filters?:
+    | {
+        slug?: {
+          $eq: string | string[] | undefined;
+        };
+        isActive?: {
+          $eq: boolean;
+        };
+        name: {
+          $contains: string;
+        };
+      }
+    | any;
+}
+
 export interface IBaseFilter {
   query?: string;
   searchTerm?: string;
@@ -14,15 +36,19 @@ export interface IBaseFilter {
 }
 
 export interface IBaseResponse {
-  success: boolean;
-  statusCode: number;
-  message: string;
-  errorMessages: string[];
   meta: {
-    total: number;
-    page: number;
-    limit: number;
-    skip: number;
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+  error: {
+    status: number;
+    name: string;
+    message: string;
+    details: any;
   };
   // eslint-disable-next-line @typescript-eslint/ban-types
   data: [] | {} | null;

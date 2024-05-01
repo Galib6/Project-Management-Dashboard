@@ -1,6 +1,6 @@
 import { paths } from '@lib/constant';
-import { storage } from '@lib/utils';
-import { MenuProps } from 'antd';
+import { storage, toolbox } from '@lib/utils';
+import { MenuProps } from 'antd/lib';
 import Link from 'next/link';
 import { AiOutlineDashboard, AiOutlineLogout, AiOutlineSafety, AiOutlineUser } from 'react-icons/ai';
 
@@ -29,9 +29,9 @@ const welcomeMenu = [
 // main menu items
 const mainMenu: MenuProps['items'] = [
   {
-    key: paths.root,
+    key: paths.projectOverview.list,
     icon: <AiOutlineDashboard />,
-    label: <Link href={paths.root}>My Test</Link>,
+    label: <Link href={toolbox.appendPagination(paths.projectOverview.list, 1, 5)}>Projects Overview</Link>,
   },
 ];
 

@@ -41,17 +41,3 @@ export const storage = {
     localStorage.removeItem(key);
   },
 };
-// storage utils functions end
-
-export const methodSuccessMessage = (method: 'POST' | 'PUT' | 'DELETE' | string): string => {
-  switch (method.toUpperCase()) {
-    case 'POST':
-      return 'Created Success';
-    case 'PUT':
-      return 'Update Success';
-    case 'DELETE':
-      return 'Delete Success';
-    default:
-      return '';
-  }
-};
