@@ -1,3 +1,4 @@
+import { publicPaths } from '@lib/constant/_publicPaths';
 import { AppProvider } from '@lib/context';
 import AppLayout from '@modules/base/layout/AppLayout';
 import '@styles/main.scss';
@@ -13,9 +14,13 @@ const lato = Lato({
 function App({ Component, router, pageProps }: AppProps) {
   return (
     <AppProvider nextFont={lato}>
-      <AppLayout router={router}>
+      {publicPaths.includes(router.pathname) ? (
         <Component {...pageProps} />
-      </AppLayout>
+      ) : (
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
+      )}
     </AppProvider>
   );
 }
