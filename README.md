@@ -1,44 +1,58 @@
-# Project Management Documentation
+## Project Management Application Documentation
 
-## Requirements
+## Features:
 
--Authentication Page:
-Create a login form using Ant Design for validation. Backend authentication is not needed; provide mock responses.
+## Authentication Page:
 
--Projects Overview Page: Display projects with options to view, edit, or delete. Use React Query to fetch data.
+A login form with validation using Ant Design for UI components and validation feedback.
+Mock response for successful and unsuccessful logins.
 
--Project Details Page: Show detailed project information including tasks, team members, and activities. Add functionalities to manage tasks and assign team members.
+## Projects Overview Page:
 
--Task Management: Implement task addition, editing, completion, and detailed view. Include drag-and-drop feature for task status using Zustand.
+Displays a list of projects with options to view, edit, or delete.
+Utilizes React Query to fetch project data from a mock API.
 
--Task Filters and Search: Allow filtering tasks by status, due date, or assignee. Provide a search bar.
+##Project Details Page:
+Shows detailed information of selected project including tasks, team members, and recent activities.
+Functionality to add new tasks and assign team members.
 
--Interactive Dashboard: Enhance interactivity using Ant Design components. Ensure responsiveness with Tailwind CSS.
-Technical Specifications
+## Task Management:
 
--Framework: Next.js for routing and server-side rendering.
+Adding, editing, or marking tasks as completed.
+Detailed view for each task including descriptions, deadlines, and assigned members.
+Drag-and-drop feature for task status management using Zustand for state management
 
--State Management: Zustand for global state management.
+## Task Filters and Search Functionality:
 
--Data Fetching: Use React Query for asynchronous data handling and caching.
+Filters tasks by status, due date, or assignee.
+Search bar for quick task lookup.
 
--UI Components: Utilize Ant Design for pre-built UI components.
+## Interactive Dashboard:
 
--Styling: Implement Tailwind CSS for responsive design and custom styling.
+Utilizes Ant Design for modals, dropdowns, and tooltips.
+Responsive components using Tailwind CSS. 3. Technical Requirements:
 
-## Features Overview
+## Framework:
 
--Authentication: Login form with validation.
+Next.js
 
--Project Overview: List of projects with options.
+## State Management:
 
--Project Details: Detailed project information and task management.
+Zustand for managing the global state.
+Data Fetching:
 
--Task Management: Add, edit, and complete tasks with drag-and-drop feature.
+React Query for asynchronous data fetching, state management, and cache management.
 
--Task Filters and Search: Filter tasks and search functionality.
+## UI Components:
 
--Interactive Dashboard: Enhanced interactivity using Ant Design components.
+Ant Design for pre-built UI components.
+Styling:
+
+Tailwind CSS for responsive design and custom styling.
+
+## Conclusion:
+
+This project management application fulfills all the specified requirements, providing a comprehensive solution for managing projects, tasks, and team activities. It incorporates modern frontend technologies to deliver a seamless user experience.
 
 ## Links
 
