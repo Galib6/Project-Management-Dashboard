@@ -15,7 +15,6 @@ export const AppProvider = ({ nextFont, children }: AppProviderProps) => {
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: '#6200ee',
             // controlOutline: 'transparent',
             fontFamily: 'var(--font-lato)',
           },

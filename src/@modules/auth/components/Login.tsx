@@ -1,24 +1,28 @@
 'use client';
-import { apiMessages } from '@lib/constant';
+import { paths } from '@lib/constant';
 import { Button, Checkbox, Col, Form, Input, Row, message } from 'antd/lib';
 import Image from 'next/image';
 import Link from 'next/link';
-import LoginThumb from 'public/images/auth-thumb.svg';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import { MdEmail, MdLock } from 'react-icons/md';
-import { useLogin } from '../lib/hooks';
 
 const Login = () => {
+  const router = useRouter();
   const [messageApi, msgCtx] = message.useMessage();
+  const [loading, setIsLoading] = useState(false);
 
-  const loginFn = useLogin({
-    config: {
-      onSuccess(data) {
-        if (!data?.success) return;
-        // router.push(paths.console.root);
-        messageApi.success(apiMessages.login);
-      },
-    },
-  });
+  const handleLogin = (_values) => {
+    messageApi.open({
+      type: 'loading',
+      content: 'Welcome! Please wait a moment...',
+      duration: 1.5,
+    });
+    setTimeout(() => {
+      setIsLoading(false);
+      router.push(paths.root);
+    }, 2000);
+  };
 
   return (
     <Row className="h-full" align="middle" justify="center">
@@ -32,15 +36,20 @@ const Login = () => {
           //   backgroundRepeat: 'round',
           // }}
         >
-          <Image priority src={LoginThumb} alt="auth-thumb" />
+          <Image
+            priority
+            width={500}
+            height={500}
+            src="https://res.cloudinary.com/dxthattjv/image/upload/v1714540789/16640_4b00293902.jpg"
+            alt="auth-thumb"
+          />
         </div>
       </Col>
       <Col sm={24} md={14} lg={12}>
         <div className="flex justify-center py-10">
           <div className="xl:w-1/2 md:w-3/4 sm:w-full sm:p-6 md:p-0">
             <div className="mb-10 text-center">
-              <img className="mx-auto mb-8" src="/images/logo.png" alt="logo" />
-              <h2 className="text-2xl font-semibold">Welcome Back! Please Login</h2>
+              <h2 className="text-2xl font-semibold">Please Login!</h2>
             </div>
 
             {/* <div className="text-center">
@@ -60,12 +69,7 @@ const Login = () => {
               </Button>
             </div> */}
 
-            <Form
-              size="large"
-              onFinish={(values) => {
-                loginFn.mutateAsync(values);
-              }}
-            >
+            <Form size="large" onFinish={handleLogin}>
               <Form.Item
                 name="email"
                 rules={[
@@ -94,7 +98,7 @@ const Login = () => {
                 <Link href="/">Forgot password</Link>
               </div>
               <Form.Item>
-                <Button block type="primary" htmlType="submit">
+                <Button loading={loading} block type="primary" htmlType="submit">
                   Sign in
                 </Button>
               </Form.Item>

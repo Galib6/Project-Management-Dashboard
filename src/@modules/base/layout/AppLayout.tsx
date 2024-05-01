@@ -1,5 +1,5 @@
 'use client';
-import { Dropdown, Grid, Layout, Menu } from 'antd/lib';
+import { Grid, Layout, Menu } from 'antd/lib';
 import { usePathname } from 'next/navigation';
 import { Router } from 'next/router';
 import React, { useState } from 'react';
@@ -18,7 +18,6 @@ const AppLayout: React.FC<IFProps> = ({ children }) => {
     sider: {
       boxShadow: '0 0 20px #0815420d',
       borderRight: '1px solid #ecf3fa',
-      overflow: 'auto',
       height: '100vh',
       position: 'fixed',
       left: !screens.md && isCollapsed ? '-100%' : 0,
@@ -62,6 +61,7 @@ const AppLayout: React.FC<IFProps> = ({ children }) => {
       <Layout.Sider
         theme="light"
         trigger={null}
+        className="relative"
         collapsible
         collapsed={isCollapsed}
         style={styles.sider as any}
@@ -80,13 +80,15 @@ const AppLayout: React.FC<IFProps> = ({ children }) => {
             justifyContent: 'center',
           }}
         >
-          {isCollapsed ? (
-            <img className="logo" src="/images/logo-sm.png" style={{ width: 50 }} alt="logo" />
-          ) : (
-            <img className="logo" src="/images/logo.png" style={{ width: 180 }} alt="logo" />
-          )}
+          {isCollapsed ? <p>Manage</p> : <p className="font-bold text-[20px]">Manage Task</p>}
         </div>
-
+        <div
+          className="top-[10px] right-0 translate-x-[50%] absolute p-2 bg-white rounded-full shadow-lg z-[9999]"
+          style={{ fontSize: 22, cursor: 'pointer' }}
+          onClick={() => setIsCollapsed(!isCollapsed)}
+        >
+          {isCollapsed ? <AiOutlineMenuFold /> : <AiOutlineMenuUnfold />}
+        </div>
         <Menu
           theme="light"
           mode="inline"
@@ -100,29 +102,12 @@ const AppLayout: React.FC<IFProps> = ({ children }) => {
       <Layout style={styles.layout as any}>
         <Layout.Header style={styles.header as any}>
           <div className="flex items-center justify-between w-full">
-            <div style={{ fontSize: 22, cursor: 'pointer' }} onClick={() => setIsCollapsed(!isCollapsed)}>
-              {isCollapsed ? <AiOutlineMenuFold /> : <AiOutlineMenuUnfold />}
-            </div>
-
-            <div className="">
+            {/* <div className="">
               <Dropdown.Button menu={{ items: menuItems.welcomeMenu, style: { width: 150 } }}>Welcome</Dropdown.Button>
-            </div>
+            </div> */}
           </div>
         </Layout.Header>
         <Layout.Content style={styles.content as any}>{children}</Layout.Content>
-        <Layout.Footer className="pb-[10px]">
-          <p className="text-center">
-            Made With ❤️ By{' '}
-            <a
-              href="https://uniclienttechnologies.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500"
-            >
-              Uniclient Technologies
-            </a>
-          </p>
-        </Layout.Footer>
       </Layout>
     </Layout>
   );
