@@ -1,6 +1,6 @@
 'use client';
 
-import { apiMessages } from '@lib/constant';
+import { apiMessages, paths } from '@lib/constant';
 import { ColumnsType } from 'antd/es/table';
 import {
   Avatar,
@@ -15,6 +15,7 @@ import {
   Tooltip,
   message,
 } from 'antd/lib';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { AiFillDelete } from 'react-icons/ai';
 import { BiSolidMessageSquareEdit } from 'react-icons/bi';
@@ -31,6 +32,7 @@ interface IProps {
 }
 
 const ProjectList: React.FC<IProps> = ({ data, loading, pagination }) => {
+  const router = useRouter();
   const [messageApi, messageCtx] = message.useMessage();
   const [updateFormInstance] = Form.useForm();
   const [addNewMemberModal, setAddNewMemberModal] = useState<any>();
@@ -113,7 +115,7 @@ const ProjectList: React.FC<IProps> = ({ data, loading, pagination }) => {
       align: 'center',
       render: (id) => (
         <Space>
-          <Button className="!h-auto !p-[8px]" onClick={async () => {}}>
+          <Button size="middle" onClick={() => router.push(paths.projectOverview.slug(id))}>
             View Details
           </Button>
           <Button

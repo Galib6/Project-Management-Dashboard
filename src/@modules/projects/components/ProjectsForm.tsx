@@ -48,20 +48,6 @@ const ProjectForm: React.FC<IProps> = ({ form, initialValues, onFinish, loading 
           </Form.Item>
         </Col>
         <Col span={24}>
-          <Form.Item
-            label="recentActivity"
-            name="recentActivity"
-            rules={[
-              {
-                required: true,
-                message: 'Please select Recent Activity!',
-              },
-            ]}
-          >
-            <Input placeholder="Select a Recent Activity" />
-          </Form.Item>
-        </Col>
-        <Col span={24}>
           <Form.Item className="text-right">
             <Button loading={loading} type="primary" htmlType="submit">
               Submit

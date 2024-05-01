@@ -12,8 +12,8 @@ import {
   useSensors,
 } from '@dnd-kit/core';
 import { SortableContext, arrayMove } from '@dnd-kit/sortable';
-import { defaultTasks } from '@lib/constant';
 import { toolbox } from '@lib/utils';
+import { useTaskStore } from '@lib/zustland/store';
 import { createPortal } from 'react-dom';
 import { Column, Id, Task } from '../type/types';
 import ColumnContainer from './ColumnContainer';
@@ -33,19 +33,23 @@ import TaskCard from './TaskCard';
 //     title: 'Done',
 //   },
 // ];
-const defaultCols: Column[] = toolbox.removeDuplicateObjectsByProperty(
-  defaultTasks.map((col) => ({ id: col.columnId, title: col.columnId })),
-  'title',
-);
 
 function KanbanBoard() {
-  const [columns, setColumns] = useState<Column[]>(defaultCols);
-  const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
+  const taskStore = useTaskStore();
+  const { taskList: taskState, setTaskList } = taskStore;
 
-  const [tasks, setTasks] = useState<Task[]>(defaultTasks);
+  const [tasks, setTasks] = useState<Task[]>(taskState);
   const [activeColumn, setActiveColumn] = useState<Column | null>(null);
 
   const [activeTask, setActiveTask] = useState<Task | null>(null);
+
+  const defaultCols: Column[] = toolbox.removeDuplicateObjectsByProperty(
+    tasks.map((col) => ({ id: col.columnId, title: col.columnId })),
+    'title',
+  );
+
+  const [columns, setColumns] = useState<Column[]>(defaultCols);
+  const columnsId = useMemo(() => columns.map((col) => col.id), [columns]);
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -118,6 +122,7 @@ function KanbanBoard() {
     };
 
     setTasks([...tasks, newTask]);
+    setTaskList([...tasks, newTask]);
   }
 
   function deleteTask(id: Id) {
@@ -131,6 +136,7 @@ function KanbanBoard() {
       return { ...task, ...content };
     });
     setTasks(newTasks);
+    setTaskList(newTasks);
   }
 
   function createNewColumn() {
@@ -148,6 +154,7 @@ function KanbanBoard() {
 
     const newTasks = tasks.filter((t) => t.columnId !== id);
     setTasks(newTasks);
+    setTaskList(newTasks);
   }
 
   function updateColumn(id: Id, title: string) {
@@ -225,6 +232,7 @@ function KanbanBoard() {
 
         return arrayMove(tasks, activeIndex, overIndex);
       });
+      setTaskList(tasks);
     }
 
     const isOverAColumn = over.data.current?.type === 'Column';
@@ -238,6 +246,7 @@ function KanbanBoard() {
         // console.log('DROPPING TASK OVER COLUMN', { activeIndex });
         return arrayMove(tasks, activeIndex, activeIndex);
       });
+      setTaskList(tasks);
     }
   }
 }

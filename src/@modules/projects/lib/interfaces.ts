@@ -10,9 +10,7 @@ export interface IProject {
     createdAt: string;
     updatedAt: string;
     publishedAt: string;
-    assignedMember: {
-      name: string;
-    }[];
+    assignedMember: string[];
   };
 }
 

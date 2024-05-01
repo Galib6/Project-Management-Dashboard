@@ -96,7 +96,7 @@ const AppLayout: React.FC<IFProps> = ({ children }) => {
           mode="inline"
           style={{ borderRight: 0 }}
           defaultSelectedKeys={[String(pathname)]}
-          defaultOpenKeys={[String(pathname)]}
+          //   defaultOpenKeys={[String(pathname)]}
           items={menuItems.mainMenu}
         />
       </Layout.Sider>
