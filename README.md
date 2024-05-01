@@ -1,77 +1,50 @@
-# Project Architecture
+# Project Management Documentation
 
-## Overview
+## Requirements
 
-The task management app is designed to help users organize and track their tasks efficiently. It provides features such as task creation, assignment, status tracking, and deadline management.
+-Authentication Page:
+Create a login form using Ant Design for validation. Backend authentication is not needed; provide mock responses.
 
-## Technologies Used
+-Projects Overview Page: Display projects with options to view, edit, or delete. Use React Query to fetch data.
 
-The task management app is built using the following technologies and frameworks:
+-Project Details Page: Show detailed project information including tasks, team members, and activities. Add functionalities to manage tasks and assign team members.
 
-- Front-end: HTML, CSS, JavaScript, React.js
-- Back-end: Node.js, Express.js
-- Database: MongoDB
+-Task Management: Implement task addition, editing, completion, and detailed view. Include drag-and-drop feature for task status using Zustand.
 
-## Directory Structure
+-Task Filters and Search: Allow filtering tasks by status, due date, or assignee. Provide a search bar.
 
-The project follows the following directory structure:
+-Interactive Dashboard: Enhance interactivity using Ant Design components. Ensure responsiveness with Tailwind CSS.
+Technical Specifications
 
-- `src`: Contains the source code for the front-end and back-end.
-- `public`: Contains static assets and the main HTML file.
-- `server`: Contains the server-side code.
-- `client`: Contains the client-side code.
+-Framework: Next.js for routing and server-side rendering.
 
-## Components
+-State Management: Zustand for global state management.
 
-The main components of the task management app include:
+-Data Fetching: Use React Query for asynchronous data handling and caching.
 
-- User Interface: Responsible for rendering the user interface and handling user interactions.
-- Server: Handles API requests, performs business logic, and interacts with the database.
-- Database: Stores task data and user information.
+-UI Components: Utilize Ant Design for pre-built UI components.
 
-## Data Flow
+-Styling: Implement Tailwind CSS for responsive design and custom styling.
 
-The data flow within the task management app is as follows:
+## Features Overview
 
-1. The user interacts with the user interface, triggering events.
-2. The user interface sends requests to the server via APIs.
-3. The server processes the requests, performs necessary operations, and interacts with the database.
-4. The server sends back the response to the user interface, which updates the UI accordingly.
+-Authentication: Login form with validation.
 
-## Deployment
+-Project Overview: List of projects with options.
 
-The task management app can be deployed on a server or cloud platform such as Heroku or AWS. It requires Node.js and MongoDB to be installed and configured.
+-Project Details: Detailed project information and task management.
 
-## Development Setup
+-Task Management: Add, edit, and complete tasks with drag-and-drop feature.
 
-To set up the development environment and run the project locally, follow these steps:
+-Task Filters and Search: Filter tasks and search functionality.
 
-1. Clone the repository: `git clone <repository-url>`
-2. Install dependencies: `npm install`
-3. Start the server: `npm run server`
-4. Start the client: `npm run client`
-5. Access the app in your browser at `http://localhost:3000`
+-Interactive Dashboard: Enhanced interactivity using Ant Design components.
 
-## Testing
+## Links
 
-The task management app follows a comprehensive testing strategy. Unit tests are written using frameworks such as Jest and Enzyme for both the front-end and back-end components. Integration tests are performed to ensure the smooth interaction between different components.
+-GitHub Repository: [Project Management Dashboard](https://github.com/Galib6/Project-Management-Dashboard)
+-Live Demo: [Project Management Dashboard Live](https://project-management-dashboard-seven.vercel.app/)
 
-## Continuous Integration/Deployment
+## Note
 
-The project uses a CI/CD pipeline to automate testing, building, and deployment processes. Whenever changes are pushed to the repository, the pipeline runs tests, builds the project, and deploys it to a staging or production environment.
-
-## Documentation
-
-Additional documentation and resources related to the project can be found in the `docs` directory of the repository.
-
-## Contributing
-
-Contributions to the task management app are welcome! To contribute, please follow the guidelines mentioned in the CONTRIBUTING.md file. You can submit pull requests or report issues on the project's GitHub repository.
-
-## License
-
-The task management app is licensed under the MIT License. See the LICENSE file for more details.
-
-## Contact
-
-For any questions or inquiries, please contact the project maintainer at [email protected]
+This documentation provides a brief overview of the project requirements and technical specifications. Detailed implementation guidelines and design decisions should be documented separately.
