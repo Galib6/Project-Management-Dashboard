@@ -1,6 +1,6 @@
 'use client';
 import { ENV } from '@lib/config';
-import { apiMessages, paths } from '@lib/constant';
+import { apiMessages } from '@lib/constant';
 import { storage } from '@lib/utils';
 import { Button, Checkbox, Col, Form, Input, Row, message } from 'antd/lib';
 import Image from 'next/image';
@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 import { MdEmail, MdLock } from 'react-icons/md';
 import { useLogin } from '../lib/hooks';
 
-const Login = () => {
+const ForgotPassword = () => {
   const router = useRouter();
   const [messageApi, msgCtx] = message.useMessage();
   const redirectUrl = router.query?.redirectUrl?.toString();
@@ -20,7 +20,7 @@ const Login = () => {
         if (!data?.user?.id) return;
         storage.setToken(data?.jwt);
         messageApi.loading(apiMessages.login);
-        router.push(redirectUrl?.replace(ENV.NEXT_PUBLIC_BASE_URL, '') || paths.projectOverview.list);
+        router.push(redirectUrl.replace(ENV.NEXT_PUBLIC_BASE_URL, ''));
       },
     },
   });
@@ -71,6 +71,7 @@ const Login = () => {
               </Form.Item>
               <div className="flex justify-between mb-6">
                 <Checkbox>Remember me</Checkbox>
+                <Link href="/">Forgot password</Link>
               </div>
               <Form.Item>
                 <Button loading={loginFn?.isPending} block type="primary" htmlType="submit">
@@ -91,4 +92,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPassword;

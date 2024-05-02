@@ -1,5 +1,6 @@
 import { publicPaths } from '@lib/constant/_publicPaths';
 import { AppProvider } from '@lib/context';
+import WithAuth from '@modules/auth/components/WithAuth';
 import AppLayout from '@modules/base/layout/AppLayout';
 import '@styles/main.scss';
 import type { AppProps } from 'next/app';
@@ -25,4 +26,4 @@ function App({ Component, router, pageProps }: AppProps) {
   );
 }
 
-export default App;
+export default WithAuth(App);

@@ -3,5 +3,6 @@ export const ENV = {
   NEXT_PUBLIC_API_TOKEN: process.env.NEXT_PUBLIC_API_TOKEN,
   NEXT_PUBLIC_STORAGE_PREFIX: process.env.NEXT_PUBLIC_STORAGE_PREFIX,
   NEXT_PUBLIC_APP_MODE: process.env.NEXT_PUBLIC_APP_MODE,
+  NEXT_PUBLIC_BASE_URL: process.env.NEXT_PUBLIC_BASE_URL,
   isProduction: process.env.NEXT_PUBLIC_APP_MODE === 'production',
 };

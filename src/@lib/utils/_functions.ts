@@ -92,6 +92,9 @@ export class toolbox {
 
     return '';
   };
+  public static pathToUrl(path: string) {
+    return `${window.location.origin}${path}`;
+  }
   public static removeDuplicateObjectsByProperty = (array, property) => {
     const uniqueObjects = [];
     const uniqueValues = new Set();
