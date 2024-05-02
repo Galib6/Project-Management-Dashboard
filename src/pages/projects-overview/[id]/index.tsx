@@ -1,6 +1,5 @@
 import ProjectDetails from '@modules/projects/components/ProjectDetails';
-import { TabsProps } from 'antd';
-import { Tabs } from 'antd/lib';
+import { Tabs, TabsProps } from 'antd/lib';
 import dynamic from 'next/dynamic';
 
 const KanbanBoard = dynamic(() => import('@modules/kanbanBoard/components/KanbanBoard'), { ssr: false });

@@ -71,6 +71,9 @@ const Login = () => {
               </Form.Item>
               <div className="flex justify-between mb-6">
                 <Checkbox>Remember me</Checkbox>
+                <Link className="underline" href="/auth/forgot-password">
+                  Forgot password?
+                </Link>
               </div>
               <Form.Item>
                 <Button loading={loginFn?.isPending} block type="primary" htmlType="submit">

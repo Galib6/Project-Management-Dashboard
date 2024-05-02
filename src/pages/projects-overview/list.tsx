@@ -32,6 +32,17 @@ const ProjectPage = () => {
           $contains: searchTerm,
         },
       },
+      //   populate: {
+      //     test: {
+      //       populate: 'test',
+      //     },
+      //     user: {
+      //       populate: 'user',
+      //     },
+      //     image: {
+      //       populate: '*',
+      //     },
+      //   },
     },
   });
 

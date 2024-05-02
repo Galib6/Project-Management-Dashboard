@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
-import { Button, Modal } from 'antd';
+import { Button, Modal } from 'antd/lib';
 import { BiSolidMessageSquareEdit } from 'react-icons/bi';
 import { Id, Task } from '../type/types';
 import EditTaskModalContent from './EditTaskModalContent';

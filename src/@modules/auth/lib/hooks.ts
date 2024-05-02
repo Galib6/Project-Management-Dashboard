@@ -37,3 +37,37 @@ export const useRegister = ({ config }: IUseRegister = {}) => {
     },
   });
 };
+
+//------------------ useUserCreate hook ---------------------------------
+type IUseForgotPassword = {
+  config?: MutationConfig<typeof AuthService.forgotPassword>;
+};
+
+export const useForgotPassword = ({ config }: IUseForgotPassword = {}) => {
+  return useMutation({
+    ...config,
+    mutationFn: AuthService.forgotPassword,
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: [AuthService.NAME],
+      });
+    },
+  });
+};
+
+//------------------ useUserCreate hook ---------------------------------
+type IUseResetPassword = {
+  config?: MutationConfig<typeof AuthService.ResetPassword>;
+};
+
+export const useResetPassword = ({ config }: IUseResetPassword = {}) => {
+  return useMutation({
+    ...config,
+    mutationFn: AuthService.ResetPassword,
+    onSettled: () => {
+      queryClient.invalidateQueries({
+        queryKey: [AuthService.NAME],
+      });
+    },
+  });
+};

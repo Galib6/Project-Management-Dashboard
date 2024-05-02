@@ -1,6 +1,6 @@
 import ForgotPassword from '@modules/auth/components/ForgotPassword';
 
-const ResetPassword = () => {
+const ForgotPass = () => {
   return (
     <div>
       <ForgotPassword />
@@ -8,4 +8,4 @@ const ResetPassword = () => {
   );
 };
 
-export default ResetPassword;
+export default ForgotPass;

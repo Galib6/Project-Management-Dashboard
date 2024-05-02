@@ -2,7 +2,7 @@ import { SortableContext, useSortable } from '@dnd-kit/sortable';
 import TrashIcon from '../icons/TrashIcon';
 
 import { CSS } from '@dnd-kit/utilities';
-import { Button } from 'antd';
+import { Button } from 'antd/lib';
 import { useMemo, useState } from 'react';
 import PlusIcon from '../icons/PlusIcon';
 import { Column, Id, Task } from '../type/types';

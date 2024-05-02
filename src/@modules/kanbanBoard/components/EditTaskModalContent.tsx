@@ -1,5 +1,4 @@
-import { Button, Tooltip, message } from 'antd';
-import { Avatar, Input } from 'antd/lib';
+import { Avatar, Button, Input, Tooltip, message } from 'antd/lib';
 import { useState } from 'react';
 import { MdDeleteForever } from 'react-icons/md';
 import { Id, Task } from '../type/types';

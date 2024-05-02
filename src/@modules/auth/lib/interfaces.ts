@@ -30,3 +30,24 @@ export interface ITokenData {
   iat: number;
   exp: number;
 }
+export interface IForgotPassword {
+  ok: boolean;
+}
+export interface IResetPasswordCreate {
+  password: string;
+  passwordConfirmation: string;
+  code: string;
+}
+export interface IResetPassword {
+  jwt: string;
+  user: {
+    id: IdType;
+    username: string;
+    email: string;
+    provider: string;
+    confirmed: boolean;
+    blocked: boolean;
+    createdAt: string;
+    updatedAt: string;
+  };
+}
