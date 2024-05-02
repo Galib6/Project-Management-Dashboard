@@ -5,6 +5,12 @@ export const paths = {
     list: '/projects-overview/list',
     slug: (id) => `/projects-overview/${id}`,
   },
+  TaskList: {
+    root: '/task/list',
+  },
+  kanban: {
+    root: '/kanban',
+  },
   auth: {
     login: '/auth/login',
     register: '/auth/register',

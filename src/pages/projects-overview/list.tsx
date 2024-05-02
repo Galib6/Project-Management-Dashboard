@@ -18,7 +18,7 @@ const ProjectPage = () => {
   const router = useRouter();
   const [createFormInstance] = Form.useForm();
 
-  const { page = 1, limit = 2, searchTerm }: IBaseFilter = toolbox.parseQueryParams<IBaseFilter>(router.asPath);
+  const { page = 1, limit = 10, searchTerm }: IBaseFilter = toolbox.parseQueryParams<IBaseFilter>(router.asPath);
 
   // query functionalities
   const { isLoading, data, isPending, isRefetching } = useProjects({

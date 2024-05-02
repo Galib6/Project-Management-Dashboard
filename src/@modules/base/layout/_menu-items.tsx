@@ -2,7 +2,10 @@ import { paths } from '@lib/constant';
 import { storage, toolbox } from '@lib/utils';
 import { MenuProps } from 'antd/lib';
 import Link from 'next/link';
-import { AiOutlineDashboard, AiOutlineLogout, AiOutlineSafety, AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineLogout, AiOutlineSafety, AiOutlineUser } from 'react-icons/ai';
+import { BsFillKanbanFill } from 'react-icons/bs';
+import { FaClipboardList } from 'react-icons/fa';
+import { MdSummarize } from 'react-icons/md';
 
 const welcomeMenu = [
   {
@@ -30,8 +33,18 @@ const welcomeMenu = [
 const mainMenu: MenuProps['items'] = [
   {
     key: paths.projectOverview.list,
-    icon: <AiOutlineDashboard />,
+    icon: <MdSummarize />,
     label: <Link href={toolbox.appendPagination(paths.projectOverview.list, 1, 5)}>Projects Overview</Link>,
+  },
+  {
+    key: paths.TaskList.root,
+    icon: <FaClipboardList />,
+    label: <Link href={paths.TaskList.root}>Task List</Link>,
+  },
+  {
+    key: paths.kanban.root,
+    icon: <BsFillKanbanFill />,
+    label: <Link href={paths.kanban.root}>Kanban</Link>,
   },
 ];
 

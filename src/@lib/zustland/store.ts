@@ -3,16 +3,6 @@ import { Task } from '@modules/kanbanBoard/type/types';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-//Interface user data
-export interface IUserInterface {
-  id: number;
-  account_type: string;
-  name: string;
-  email: string;
-  phone?: string;
-  company_name?: string;
-}
-
 //Define type store
 
 export type IStore = {
@@ -30,6 +20,6 @@ export const useTaskStore = create<IStore>()(
         set({ taskList: products });
       },
     }),
-    { name: 'cart-storage' },
+    { name: 'zustland-storage' },
   ),
 );

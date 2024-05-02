@@ -78,11 +78,13 @@ const ProjectList: React.FC<IProps> = ({ data, loading, pagination }) => {
       title: 'Title',
       dataIndex: 'title',
       key: 'title',
+      render: (title) => <p className=" max-w-[250px]">{title}</p> ?? '-',
     },
     {
       title: 'Descriptions',
       dataIndex: 'descriptions',
       key: 'descriptions',
+      render: (descriptions) => <p className="line-clamp-2 max-w-[200px]">{descriptions}</p> ?? '-',
     },
     {
       title: 'Assigned Member',

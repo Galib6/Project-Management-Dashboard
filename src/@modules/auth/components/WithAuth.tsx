@@ -17,7 +17,7 @@ const WithAuth = <P extends object>(WrappedComponent: React.ComponentType<P>) =>
         setIsAuthenticated(isAuthenticated);
 
         // Redirect to login page if user is not authenticated
-        if (!isAuthenticated && typeof window !== 'undefined') {
+        if (!isAuthenticated && typeof window !== 'undefined' && router.isReady) {
           router.push({
             pathname: paths.auth.login,
             query: {
