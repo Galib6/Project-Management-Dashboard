@@ -1,6 +1,6 @@
 import ProjectDetails from '@modules/projects/components/ProjectDetails';
 import { useProject } from '@modules/projects/lib/hooks';
-import { Avatar, Badge, Descriptions, DescriptionsProps, Tabs, TabsProps, Tooltip } from 'antd/lib';
+import { Avatar, Badge, Descriptions, DescriptionsProps, Skeleton, Tabs, TabsProps, Tooltip } from 'antd/lib';
 import dayjs from 'dayjs';
 
 import dynamic from 'next/dynamic';
@@ -10,7 +10,7 @@ const KanbanBoard = dynamic(() => import('@modules/kanbanBoard/components/Kanban
 
 const Index = () => {
   const router = useRouter();
-  const { data } = useProject({ id: (router?.query?.id as string) ?? null });
+  const { data, isLoading } = useProject({ id: (router?.query?.id as string) ?? null });
   const DescriptionItems: DescriptionsProps['items'] = [
     {
       key: '1',
@@ -65,7 +65,11 @@ const Index = () => {
       label: 'Project Details',
       children: (
         <>
-          <Descriptions title="Project details" bordered items={DescriptionItems} />
+          {isLoading ? (
+            <Skeleton paragraph={{ rows: 8 }} active />
+          ) : (
+            <Descriptions title="Project details" bordered items={DescriptionItems} />
+          )}
           <ProjectDetails />
         </>
       ),
