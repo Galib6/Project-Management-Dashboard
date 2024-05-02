@@ -3,10 +3,9 @@ import { IBaseResponse } from '@modules/base/interfaces';
 import { notification } from 'antd/lib';
 
 import axios, { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { ENV } from '../ENV';
 
 const headers = {
-  Authorization: `Bearer ${ENV.NEXT_PUBLIC_API_TOKEN}`,
+  Authorization: `Bearer ${storage.getToken()}`,
 };
 export const coreAxiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_END_POINT,
@@ -15,7 +14,7 @@ export const coreAxiosInstance = axios.create({
 });
 coreAxiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    config.headers['Authorization'] = `Bearer ${ENV.NEXT_PUBLIC_API_TOKEN}`;
+    config.headers['Authorization'] = `Bearer ${storage.getToken()}`;
     return config;
   },
   (error: AxiosError) => {
@@ -29,7 +28,7 @@ coreAxiosInstance.interceptors.response.use(
   (error: AxiosError<IBaseResponse>) => {
     if (error?.response?.status === 401) {
       storage.clear();
-    } else if (!!error.response?.data?.data === false) {
+    } else if (!!error.response?.data?.error) {
       notification.error({
         message: `${error.response?.data?.error.message} with status code ${error.response?.data?.error.status}`,
         duration: 1,

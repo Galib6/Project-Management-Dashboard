@@ -1,12 +1,13 @@
 'use client';
 import { paths } from '@lib/constant';
-import { Dropdown, Grid, Layout, Menu, Space } from 'antd/lib';
+import { storage } from '@lib/utils';
+import { Dropdown, Grid, Layout, Menu } from 'antd/lib';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Router } from 'next/router';
 import React, { useState } from 'react';
+import { AiOutlineUser } from 'react-icons/ai';
 import { CgMenuLeft, CgMenuRight } from 'react-icons/cg';
-import { FaAngleDown } from 'react-icons/fa6';
 import menuItems from './_menu-items';
 interface IFProps {
   children: any;
@@ -103,22 +104,28 @@ const AppLayout: React.FC<IFProps> = ({ children }) => {
 
       <Layout style={styles.layout as any}>
         <Layout.Header style={styles.header as any}>
-          <div className="flex items-center justify-end w-full pr-[30px]">
-            <Dropdown
+          <div className="flex items-center justify-end w-full pr-[20px]">
+            <Dropdown.Button
+              className="w-auto"
               menu={{
                 items: [
-                  { key: '1', label: <Link href={paths.auth.login}>Login</Link> },
-                  { key: '2', label: <Link href={paths.auth.login}>Sign up</Link> },
+                  {
+                    key: '2',
+                    label: (
+                      <Link href={paths.auth.login} onClick={() => storage.removeToken()}>
+                        Logout
+                      </Link>
+                    ),
+                  },
                 ],
                 selectable: true,
                 defaultSelectedKeys: ['3'],
               }}
+              placement="bottom"
+              icon={<AiOutlineUser size={18} />}
             >
-              <Space>
-                Profile
-                <FaAngleDown />
-              </Space>
-            </Dropdown>
+              Profile
+            </Dropdown.Button>
           </div>
         </Layout.Header>
         <Layout.Content style={styles.content as any}>{children}</Layout.Content>

@@ -1,31 +1,28 @@
-import { paths } from '@lib/constant';
+import { apiMessages } from '@lib/constant';
+import { storage } from '@lib/utils';
 import { Button, Col, Form, Input, Row, message } from 'antd/lib';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import { BsFillPersonFill } from 'react-icons/bs';
 import { MdEmail, MdLock } from 'react-icons/md';
+import { useRegister } from '../lib/hooks';
 
 const Register = () => {
-  const [loading, setIsLoading] = useState(false);
   const router = useRouter();
   const [form] = Form.useForm();
   const [messageApi, contextHolder] = message.useMessage();
 
-  const onFinish = (values) => {
-    delete values.confirmPassword;
-    setIsLoading(true);
-    messageApi.open({
-      type: 'loading',
-      content: 'Welcome! Please wait a moment...',
-      duration: 1.5,
-    });
-    setTimeout(() => {
-      setIsLoading(false);
-      router.push(paths.root);
-    }, 2000);
-  };
+  const RegisterFn = useRegister({
+    config: {
+      onSuccess(data) {
+        if (!data?.user?.id) return;
+        storage.setToken(data?.jwt);
+        messageApi.success(apiMessages.register);
+        router.push('/');
+      },
+    },
+  });
 
   return (
     <Row className="h-full" align="middle" justify="center">
@@ -54,13 +51,13 @@ const Register = () => {
             <div className="mb-10 text-center">
               <h2 className="text-2xl font-semibold">Create an Account!</h2>
             </div>
-            <Form size="large" form={form} onFinish={onFinish}>
+            <Form size="large" form={form} onFinish={RegisterFn.mutateAsync}>
               <Form.Item
-                name="firstName"
+                name="username"
                 rules={[
                   {
                     required: true,
-                    message: 'Please input your first name',
+                    message: 'Please input your user name',
                   },
                 ]}
               >
@@ -87,7 +84,7 @@ const Register = () => {
                       if (!value || /^(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(getFieldValue('password'))) {
                         return Promise.resolve();
                       }
-                      return new Promise((resolve, reject) => {
+                      return new Promise((_resolve, reject) => {
                         setTimeout(() => {
                           reject(new Error('Must Have 8 character and one uppercase and lowercase!'));
                         }, 1000);
@@ -117,7 +114,7 @@ const Register = () => {
                 <Input.Password prefix={<MdLock />} placeholder="Please confirm your password" />
               </Form.Item>
               <Form.Item>
-                <Button loading={loading} block type="primary" htmlType="submit">
+                <Button loading={RegisterFn?.isPending} block type="primary" htmlType="submit">
                   Sign up
                 </Button>
               </Form.Item>
